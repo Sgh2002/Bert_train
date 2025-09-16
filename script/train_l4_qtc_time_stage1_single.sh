@@ -1,0 +1,36 @@
+CUDA_LAUNCH_BLOCKING=1 torchrun --nnodes=1 --nproc_per_node=gpu \
+main_sly_time_single.py \
+--output_dir "/primus_oss/save_checkpoint" \
+--model_type l4_qtc_only_elie \
+--cache_dir ./cache \
+--do_train \
+--do_eval \
+--fp16 \
+--query_max_len 30 \
+--t_max_len 30 \
+--train_file /primus_datasets/primus_data/qtc_l4_llm_train_3e_t9J9Kp/ \
+--training_data_format raw \
+--validation_file /primus_datasets/primus_data/test_all_rwplsU/ \
+--per_device_train_batch_size 64 \
+--per_device_eval_batch_size 64 \
+--dataloader_num_workers 32 \
+--max_steps 5000000 \
+--save_steps 10000 \
+--eval_steps 10000 \
+--logging_steps 100 \
+--learning_rate 1e-4 \
+--max_grad_norm 5.0 \
+--evaluation_strategy "steps" \
+--ignore_data_skip False \
+--overwrite_cache False \
+--shuffle_buffer_size 50000 \
+--warmup_steps 2000 \
+--save_safetensors False \
+--save_on_each_node False \
+--elie_prob_col None  \
+--elie_logit_col None \
+--qtc_pair_score_col None \
+--auth_score_col None \
+--elapsedmonth_col "elapsedDays" \
+--seed 3423 \
+--qtc_init_checkpoint /primus_datasets/primus_data/Bert_model_IaegUm \
